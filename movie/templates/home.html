@@ -8,11 +8,12 @@
             <label for="searchMovie" class="form-label">
                 Search for Movie:
             </label>
-            <input type="text" class="form-control" name="searchMovie"/>
+            <input type="text" class="form-control" name="searchMovie">
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
-    <p>Searching for {{searchTerm}}</p>
+
+    <p>Searching for {{ searchTerm }}</p>
     {% for movie in movies %}
         <h2>{{ movie.title }}</h2>
         <h3>{{ movie.description }}</h3>
