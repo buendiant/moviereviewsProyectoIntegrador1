@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h1>News page</h1>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>News</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+
+        .card:hover {
+            transform: scale(1.01);
+            transition: 0.2s ease;
+        }
+
+        .btn-link {
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+
+    {% for news in newss %}
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-body">
+
+                <h2 class="card-title fw-bold">
+                    {{ news.headline }}
+                </h2>
+
+                <p class="text-muted mb-3">
+                    {{ news.date }}
+                </p>
+
+                <!-- Texto resumido -->
+                <p class="card-text">
+                    {{ news.body|truncatewords:40 }}
+                </p>
+
+                <!-- Botón ver más -->
+                <a class="btn btn-link p-0"
+                   data-bs-toggle="collapse"
+                   href="#collapseNews{{ news.id }}"
+                   role="button"
+                   aria-expanded="false"
+                   aria-controls="collapseNews{{ news.id }}">
+                    Ver más...
+                </a>
+
+                <!-- Texto completo -->
+                <div class="collapse mt-3" id="collapseNews{{ news.id }}">
+                    <hr>
+                    <p class="card-text">
+                        {{ news.body }}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+<!-- Bootstrap JS (ESTO ERA LO QUE TE FALTABA) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+<footer class="bg-dark text-white text-center text-lg-start mt-5">
+  <div class="container p-4">
+
+    <div class="text-center">
+      <h5 class="fw-bold">Movie Reviews Project</h5>
+      <p class="mb-1">
+        Developed by Juan Antonio Buendía
+      </p>
+      <p class="mb-0">
+        © 2026 All rights reserved
+      </p>
+    </div>
+
+  </div>
+
+  <div class="text-center p-3 bg-secondary">
+    Built with Django & Bootstrap
+  </div>
+</footer>
+{% endblock content %}
