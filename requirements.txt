@@ -1,5 +1,4 @@
 django
-pillows
-panda
-pyhton
-malplopib
+Pillow
+pandas
+maLplollib
